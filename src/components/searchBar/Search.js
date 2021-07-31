@@ -1,24 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 
-function Search() {
-    const [input, setInput] = useState([]);
-
-    function inputUpdate (event) {
-        setInput(event.target.value)   
-        console.log(input)     
-    }
+function Search(props) {
 
     return (
         <div>
             <h1>Search Images!</h1>
             <form>
-                <label>
-                    <input 
-                        placeholder="type keywords..."
-                        value={input}
-                        onChange={inputUpdate}
-                    />
-                </label>
+                <input 
+                    placeholder="type keywords..."
+                    value={props.keywords}
+                    onChange={props.handleInputChange}
+                />
             </form>
         </div>
     )

@@ -1,14 +1,25 @@
 import './App.css';
+import React, { Component } from 'react'
 import Search from "../src/components/searchBar/Search"
 import ImageRender from './components/imageRender/imageRender';
 
-function App() {
+class App extends Component {
+  state= {
+    keywords: "",
+  }
+
+  handleInputChange = event => {
+    this.setState({keywords: event.target.value})
+  } 
+
+  render(){
   return (
+    
     <div className="App">
-          <Search /> 
+          <Search handleInputChange={this.handleInputChange} /> 
           <ImageRender />
     </div>
   );
 }
-
+}
 export default App;
