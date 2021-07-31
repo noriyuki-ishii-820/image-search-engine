@@ -17,7 +17,7 @@ class App extends Component {
     
     <div className="App">
           <Search handleInputChange={this.handleInputChange} /> 
-          <ImageRender />
+          <ImageRender keywords={this.state.keywords}/>
     </div>
   );
 }

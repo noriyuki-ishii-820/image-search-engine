@@ -1,19 +1,30 @@
 import React, {useState, useEffect} from 'react'
-import { createClient } from 'pexels';
+import API from "../../util/API"
 
-function ImageRender() {
-    const [keyword, setKeywords] = useState([]);
-    const input = localStorage.getItem("keywords")
-    
-    useEffect(()=> {
-        window.addEventListener("keywords", function () {
-            console.log("working")
-        })
-    }, [], input)
+function ImageRender(props) {
+    const [photos, setPhotos] = useState([]);
+    const term = props.keywords
 
-    const client = createClient('563492ad6f91700001000001763d74916f644fd5ba78b411e7a19035');
-    const query = 'Nature';
-    //client.photos.search({ query, per_page: 1 }).then(photos => {...});
+    console.log(term)
+
+    useEffect(() => {
+        const getPhotos = setTimeout(() => {
+            renderPictures();
+        }, 3000)
+
+        return () => clearTimeout(getPhotos)
+    })    
+      
+    const renderPictures = async () => {
+            const response = await API.get(`/v1/search`, {
+                params: {
+                    query: term,
+                    per_page:15,
+                    page:1
+                },
+            })
+            console.log(response)
+    }
 
     return (
         <div>
